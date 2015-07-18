@@ -113,6 +113,10 @@ macro "hotkeymode"
 		name = "CTRL+D+REP"
 		command = ".east"
 		is-disabled = false
+	elem 
+		name = "Q"
+		command = "drop-equipped-item"
+		is-disabled = false
 	elem "s_key"
 		name = "S+REP"
 		command = ".south"

@@ -8,6 +8,8 @@
 // BEGIN_FILE_DIR
 #define FILE_DIR .
 #define FILE_DIR "icons"
+#define FILE_DIR "icons/mob"
+#define FILE_DIR "icons/obj"
 // END_FILE_DIR
 
 // BEGIN_PREFERENCES
@@ -16,6 +18,8 @@
 
 // BEGIN_INCLUDE
 #include "_maps\arena1.dm"
+#include "code\sound.dm"
+#include "code\__DEFINES\click.dm"
 #include "code\__DEFINES\stat.dm"
 #include "code\__global\global_controllers.dm"
 #include "code\__global\global_lists.dm"
@@ -30,14 +34,21 @@
 #include "code\__helpers\helpers\misc.dm"
 #include "code\__helpers\helpers\noise.dm"
 #include "code\_onclick\click.dm"
+#include "code\_onclick\item_attack.dm"
+#include "code\_onclick\hud\hud.dm"
+#include "code\_onclick\hud\screen_objects.dm"
 #include "code\atom\atom.dm"
 #include "code\atom\atom_movable.dm"
 #include "code\mob\client.dm"
+#include "code\mob\inventory.dm"
 #include "code\mob\mob.dm"
 #include "code\mob\mob_movement.dm"
+#include "code\mob\living\inventory.dm"
+#include "code\mob\living\life.dm"
 #include "code\mob\living\living.dm"
 #include "code\mob\living\living_movement.dm"
 #include "code\modules\VV\viewvariables.dm"
+#include "code\objects\item.dm"
 #include "code\turf\turf.dm"
 #include "code\turf\floors\floor.dm"
 #include "code\world\world.dm"
@@ -46,6 +57,7 @@
 #include "code\world\subsystems\mob.dm"
 #include "code\world\subsystems\sdel.dm"
 #include "interface\skin_verbs.dm"
+#include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
 // END_INCLUDE
 

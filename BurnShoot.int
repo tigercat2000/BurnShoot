@@ -1,10 +1,11 @@
 // BEGIN_INTERNALS
 /*
-LAST_COMPILE_TIME: 1437176132
+LAST_COMPILE_TIME: 1437243054
+DIR: code code\_onclick code\mob code\mob\living code\objects code\world code\world\subsystems 
 AUTO_FILE_DIR: ON
 MAP_ICON_TYPE: 0
 LAST_COMPILE_VERSION: 508.1293
-WINDOW: code\mob\living\living.dm;code\mob\mob_movement.dm;code\mob\living\living_movement.dm
+WINDOW: code\world\subsystems\controller.dm;code\world\subsystems\controller_system.dm;code\world\subsystems\mob.dm;code\objects\item.dm;code\_onclick\item_attack.dm;code\_onclick\click.dm;code\mob\living\life.dm;code\mob\living\living.dm;code\mob\living\inventory.dm
 FILE: code\mob\living\living.dm
 */
 // END_INTERNALS

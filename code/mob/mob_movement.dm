@@ -3,6 +3,7 @@
 
 /client/Move()
 	if(move_delay >= world.time)	return
+	if(mob.stat) return
 	move_delay = world.time + 1
 	return ..()
 

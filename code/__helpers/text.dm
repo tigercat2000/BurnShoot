@@ -1,0 +1,69 @@
+//Shamelessly borrowed from dragonroll, which is licensed under GPLv2
+
+/proc/messageArea(var/personal as text,var/others as text, var/mob/toWho, var/fromWhat,var/color="blue")
+	if(toWho && fromWhat)
+		if(toWho.client)
+			var/visibleMessage = toWho == fromWhat ? "\[[fromWhat:name]]" : "\[[fromWhat:name]] > [toWho:name]"
+			toWho << "[istype(fromWhat,/atom) ? "\icon[getFlatIcon(fromWhat)]" : ""] <font color=[color]><b>[visibleMessage]</b>: [personal]</font>"
+			for(var/mob/m in oview(world.view,toWho))
+				if(m == toWho)
+					continue
+				m << "[istype(fromWhat,/atom) ? "\icon[getFlatIcon(fromWhat)]" : ""] <font color=[color]><b>[visibleMessage]</b>: [others]</font>"
+
+/proc/messagePlayer(var/personal as text, var/mob/toWho, var/fromWhat,var/color="blue")
+	if(toWho && fromWhat)
+		if(toWho.client)
+			var/visibleMessage = toWho == fromWhat ? "\[[fromWhat:name]]" : "\[[fromWhat:name]] > [toWho:name]"
+			toWho << "[istype(fromWhat,/atom) ? "\icon[getFlatIcon(fromWhat)]" : ""] <font color=[color]><b>[visibleMessage]</b>: [personal]</font>"
+
+///
+// WRAPPER PROCS
+//
+
+/proc/messageInfo(var/personal as text, var/mob/toWho, var/fromWhat)
+	messagePlayer(personal,toWho,fromWhat,"blue")
+
+/proc/messageError(var/personal as text, var/mob/toWho, var/fromWhat)
+	world.log << "ERROR: [personal] from [fromWhat] to [toWho]"
+	messagePlayer("<b>[personal]</b>",toWho,fromWhat,"red")
+
+/proc/messageSystem(var/personal as text, var/mob/toWho, var/fromWhat)
+	messagePlayer("<b>[personal]</b>",toWho,fromWhat,"black")
+
+/proc/messageWarning(var/personal as text, var/mob/toWho, var/fromWhat)
+	world.log << "WARNING: [personal] from [fromWhat] to [toWho]"
+	messagePlayer("<font size = 6><b><i>[personal]</i></b></font>",toWho,fromWhat,"red")
+
+/proc/messageSystemAll(var/personal as text)
+	world.log << "SYSTEM: [personal]"
+	for(var/mob/living/M in world)
+		if(M.client)
+			messageSystem(personal,M,world)
+
+/proc/messageWarningAll(var/personal as text)
+	for(var/mob/living/M in world)
+		if(M.client)
+			messageWarning(personal,M,world)
+///
+///
+///
+
+/proc/messageChat(var/who, var/msg as text)
+	who << "<font color=black><b>[usr]</b> [msg]</font>"
+
+/proc/messageEmote(var/who, var/msg as text)
+	who << "<font color=orange><b>[usr]</b> [msg]</font>"
+
+/proc/formatspeech(msg)
+	if(!msg)
+		return " mutters indistinguishably";
+
+	var/ending = copytext(msg, length(msg))
+
+	if (ending == "?")
+		return "asks, \"[msg]\"";
+
+	if (ending == "!")
+		return "exclaims, \"[msg]\"";
+
+	return "says, \"[msg]\"";
